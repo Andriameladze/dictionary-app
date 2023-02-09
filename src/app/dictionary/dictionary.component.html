@@ -2,6 +2,37 @@
   <h1 class="top-title">Look up a word, learn it forever.</h1>
   <div class="input-div">
     <img src="../../assets/icons8-search-30.png" alt="search-icon" />
-    <input type="text" />
+    <input
+      #word
+      (keyup.enter)="searchWord(word.value)"
+      placeholder="start typing to look up a word"
+      type="text"
+    />
+    <button
+      (keydown.enter)="searchWord(word.value)"
+      (click)="searchWord(word.value)"
+    >
+      Search
+    </button>
+  </div>
+</div>
+
+<div class="bottom-wrapper">
+  <div class="result" *ngFor="let result of searchResults">
+    <div class="result-meanings" *ngFor="let meaning of result.meanings">
+      <div class="word-def-wrapper">
+        <h1 class="word">{{ word.value }}</h1>
+        <h1 class="partOfSpeech">- {{ meaning.partOfSpeech }}</h1>
+      </div>
+      <div
+        class="result-definition"
+        *ngFor="let definition of meaning.definitions; let i = index"
+      >
+        <p class="definition">{{ i + 1 }}) {{ definition.definition }}</p>
+      </div>
+    </div>
+    <!-- <p class="definition">Hello</p> -->
+    <!-- <h1>{{ result?.meanings?.partOfSpeech }}</h1>
+    <h1>{{ result.word }}</h1> -->
   </div>
 </div>
