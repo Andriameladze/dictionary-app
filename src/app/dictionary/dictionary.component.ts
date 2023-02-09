@@ -16,7 +16,6 @@ export class DictionaryComponent implements OnInit {
   searchWord(word: string) {
     this.searchService.getSearchResult(word).subscribe((result) => {
       this.searchResults = result;
-      console.log(this.searchResults);
     });
   }
 }
